@@ -1,66 +1,113 @@
 {
-    "$schema": "https://www.krakend.io/schema/v3.json",
-    "version": 3,
-    "name": "Medix Hub - API Gateway",
-    "timeout": "3000ms",
-    "cache_ttl": "300s",
-    "port": 8000,
-    "extra_config": {
-      "security/cors": {
-        "allow_origins": [
-          "*"
-        ],
-        "expose_headers": [
-          "Content-Length"
-        ],
-        "max_age": "12h",
-        "allow_methods": [
-          "GET",
-          "POST",
-          "PUT",
-          "DELETE",
-          "OPTIONS"
-        ]
-      },
-      "security/http": {
-        "allowed_hosts": [],
-        "content_type_nosniff": true,
-        "browser_xss_filter": true
-      },
-      "grpc": {
-        "@comment": "The catalog loads all .pb files passed or contained in directories",
-        "catalog": [
-          "pb-files/patient.pb"
-        ]
-      },
-      "telemetry/logging": {
-        "level": "DEBUG",
-        "prefix": "[KRAKEND]",
-        "syslog": false,
-        "stdout": true,
-        "format": "default",
-        "syslog_facility": "local3"
-      }
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "Medix Hub - API Gateway",
+  "disable_rest": true,
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "port": 8000,
+  "extra_config": {
+    "security/cors": {
+      "allow_origins": [
+        "*"
+      ],
+      "expose_headers": [
+        "Content-Length"
+      ],
+      "max_age": "12h",
+      "allow_methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ]
     },
-    "endpoints": [
+    "security/http": {
+      "allowed_hosts": [],
+      "content_type_nosniff": true,
+      "browser_xss_filter": true
+    },
+    "grpc": {
+      "@comment": "The catalog loads all .pb files passed or contained in directories",
+      "catalog": [
+        "pb-files/patient.pb"
+      ]
+    },
+    "telemetry/logging": {
+      "level": "DEBUG",
+      "prefix": "[KRAKEND]",
+      "syslog": false,
+      "stdout": true,
+      "format": "default",
+      "syslog_facility": "local3"
+    }
+  },
+  "endpoints": [
+    {
+      "@comment": "Feature: GRPC",
+      "endpoint": "/grpc/v1/patient",
+      "output_encoding": "no-op",
+      "input_query_strings": [ "*" ],
+      "backend": [
         {
-          "@comment": "Feature: GRPC",
-          "endpoint": "/v1/patient",
-          "input_query_strings": ["*"],
-          "backend": [
-            {
-              "host": ["localhost:8081"],
-              "url_pattern": "PatientProto/GetAllPatient",
-              "extra_config": {
-                "backend/grpc": {
-                    "client_tls": {
-                        "@comment": "Allow untrusted certificates in development stage",
-                        "allow_insecure_connections": true
-                    }
-                }
+          "host": [ "host.docker.internal:8081" ],
+          "url_pattern": "/patient.PatientProto/GetAllPatient",
+          "encoding": "no-op",
+          "extra_config": {
+            "backend/grpc": {
+              "client_tls": {
+                "@comment": "Allow untrusted certificates in development stage",
+                "allow_insecure_connections": true
+              }
             }
-            }
-          ]
+          }
         }
       ]
+    },
+    {
+      "@comment": "Feature: GRPC-transcoded",
+      "endpoint": "/api/v1/patient",
+      "output_encoding": "no-op",
+      "input_query_strings": [ "*" ],
+      "backend": [
+        {
+          "host": [ "host.docker.internal:8080" ],
+          "url_pattern": "/v1/patient",
+          "is_collection": true,
+          "encoding": "json",
+          "method": "GET",
+          "extra_config": {
+            "backend/grpc": {
+              "client_tls": {
+                "@comment": "Allow untrusted certificates in development stage",
+                "allow_insecure_connections": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Feature: GRPC-transcoded",
+      "endpoint": "/api/v1/patient/{id}",
+      "output_encoding": "no-op",
+      "input_query_strings": [ "*" ],
+      "backend": [
+        {
+          "host": [ "host.docker.internal:8080" ],
+          "url_pattern": "/v1/patient/{id}",
+          "encoding": "no-op",
+          "extra_config": {
+            "backend/grpc": {
+              "client_tls": {
+                "@comment": "Allow untrusted certificates in development stage",
+                "allow_insecure_connections": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
 }
