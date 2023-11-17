@@ -6,6 +6,9 @@
   "timeout": "3000ms",
   "cache_ttl": "300s",
   "port": 8000,
+  "tls": {
+
+  },
   "extra_config": {
     "security/cors": {
       "allow_origins": [
@@ -73,32 +76,11 @@
       "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080", "host.docker.internal:8081" ],
+          "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/patient",
           "is_collection": true,
           "encoding": "json",
-          "method": "GET",
-          "extra_config": {
-            "backend/grpc": {
-              "client_tls": {
-                "@comment": "Allow untrusted certificates in development stage",
-                "allow_insecure_connections": true
-              }
-            }
-          }
-        }
-      ]
-    },
-    {
-      "@comment": "Temporary Endpoint for Testing",
-      "endpoint": "/test",
-      "method": "POST",
-      "output_encoding": "json",
-      "backend": [
-        {
-          "host": [ "host.docker.internal:8080" ],
-          "url_pattern": "/v1/patient",
-          "encoding": "json"
+          "method": "GET"
         }
       ]
     },
@@ -110,18 +92,22 @@
       "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080", "host.docker.internal:8081" ],
+          "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/patient/{id}",
           "encoding": "json",
-          "method": "GET",
-          "extra_config": {
-            "backend/grpc": {
-              "client_tls": {
-                "@comment": "Allow untrusted certificates in development stage",
-                "allow_insecure_connections": true
-              }
-            }
-          }
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "@comment": "Temporary Endpoint for Testing",
+      "endpoint": "/test",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "patientapi/v1/patient",
+          "encoding": "json"
         }
       ]
     },
@@ -133,18 +119,10 @@
       "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080", "host.docker.internal:8081" ],
+          "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/patient",
           "encoding": "json",
-          "method": "POST",
-          "extra_config": {
-            "backend/grpc": {
-              "client_tls": {
-                "@comment": "Allow untrusted certificates in development stage",
-                "allow_insecure_connections": true
-              }
-            }
-          }
+          "method": "POST"
         }
       ]
     },
@@ -156,18 +134,10 @@
       "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080", "host.docker.internal:8081" ],
+          "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/patient",
           "encoding": "json",
-          "method": "PUT",
-          "extra_config": {
-            "backend/grpc": {
-              "client_tls": {
-                "@comment": "Allow untrusted certificates in development stage",
-                "allow_insecure_connections": true
-              }
-            }
-          }
+          "method": "PUT"
         }
       ]
     },
@@ -179,18 +149,10 @@
       "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080", "host.docker.internal:8081" ],
+          "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/patient{id}",
           "encoding": "json",
-          "method": "DELETE",
-          "extra_config": {
-            "backend/grpc": {
-              "client_tls": {
-                "@comment": "Allow untrusted certificates in development stage",
-                "allow_insecure_connections": true
-              }
-            }
-          }
+          "method": "DELETE"
         }
       ]
     },
@@ -202,18 +164,10 @@
       "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080", "host.docker.internal:8081" ],
+          "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/deceased",
           "encoding": "json",
-          "method": "UPDATE",
-          "extra_config": {
-            "backend/grpc": {
-              "client_tls": {
-                "@comment": "Allow untrusted certificates in development stage",
-                "allow_insecure_connections": true
-              }
-            }
-          }
+          "method": "UPDATE"
         }
       ]
     }
