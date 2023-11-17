@@ -101,7 +101,7 @@
           "encoding": "json"
         }
       ]
-    }
+    },
     {
       "@comment": "Feature: REST - GET patient",
       "endpoint": "/api/v1/patient/{id}",
