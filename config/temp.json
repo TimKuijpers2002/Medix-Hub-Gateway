@@ -45,10 +45,9 @@
   },
   "endpoints": [
     {
-      "@comment": "Feature: GRPC",
+      "@comment": "Feature: GRPC - GET all-patients",
       "endpoint": "/grpc/v1/patient",
       "output_encoding": "no-op",
-      "input_query_strings": [ "*" ],
       "backend": [
         {
           "host": [ "host.docker.internal:8081" ],
@@ -66,13 +65,13 @@
       ]
     },
     {
-      "@comment": "Feature: GRPC-transcoded",
+      "@comment": "Feature: REST - GET all-patients",
       "endpoint": "/api/v1/patient",
-      "output_encoding": "no-op",
-      "input_query_strings": [ "*" ],
+      "method": "GET",
+      "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080" ],
+          "host": [ "host.docker.internal:8080", "host.docker.internal:8081" ],
           "url_pattern": "/v1/patient",
           "is_collection": true,
           "encoding": "json",
@@ -89,15 +88,82 @@
       ]
     },
     {
-      "@comment": "Feature: GRPC-transcoded",
+      "@comment": "Feature: REST - GET patient",
       "endpoint": "/api/v1/patient/{id}",
-      "output_encoding": "no-op",
-      "input_query_strings": [ "*" ],
+      "method": "GET",
+      "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080" ],
+          "host": [ "host.docker.internal:8080", "host.docker.internal:8081" ],
           "url_pattern": "/v1/patient/{id}",
-          "encoding": "no-op",
+          "encoding": "json",
+          "method": "GET",
+          "extra_config": {
+            "backend/grpc": {
+              "client_tls": {
+                "@comment": "Allow untrusted certificates in development stage",
+                "allow_insecure_connections": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Feature: REST - POST patient",
+      "endpoint": "/api/v1/patient",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "host": [ "host.docker.internal:8080", "host.docker.internal:8081" ],
+          "url_pattern": "/v1/patient",
+          "encoding": "json",
+          "method": "POST",
+          "extra_config": {
+            "backend/grpc": {
+              "client_tls": {
+                "@comment": "Allow untrusted certificates in development stage",
+                "allow_insecure_connections": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Feature: REST - PUT patient",
+      "endpoint": "/api/v1/patient",
+      "method": "PUT",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "host": [ "host.docker.internal:8080", "host.docker.internal:8081" ],
+          "url_pattern": "/v1/patient",
+          "encoding": "json",
+          "method": "PUT",
+          "extra_config": {
+            "backend/grpc": {
+              "client_tls": {
+                "@comment": "Allow untrusted certificates in development stage",
+                "allow_insecure_connections": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Feature: REST - DELETE patient",
+      "endpoint": "/api/v1/patient/{id}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "host": [ "host.docker.internal:8080", "host.docker.internal:8081" ],
+          "url_pattern": "/v1/patient{id}",
+          "encoding": "json",
+          "method": "DELETE",
           "extra_config": {
             "backend/grpc": {
               "client_tls": {
