@@ -41,3 +41,8 @@ protoc --proto_path="." --proto_path="./Protos" --proto_path="your-absolute-path
 <br>
 <br>
 Of course you have to replace the placeholders with your actuall paths!
+<br>
+If your proto file uses imports of other proto files, you should include "--include_imports" into the command like so:
+<br>
+<br>
+protoc --proto_path="." --proto_path="./Protos" --proto_path="your-absolute-path-to-csproj-dir\google\api" --descriptor_set_out="your-absolute-path-to-desired-storage-dir/file-name.pb" --include_imports ./Protos/*.proto
