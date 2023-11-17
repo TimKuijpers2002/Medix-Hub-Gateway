@@ -48,6 +48,7 @@
       "@comment": "Feature: GRPC - GET all-patients",
       "endpoint": "/grpc/v1/patient",
       "output_encoding": "no-op",
+      "input_query_strings": [ "*" ],
       "backend": [
         {
           "host": [ "host.docker.internal:8081" ],
@@ -68,6 +69,7 @@
       "@comment": "Feature: REST - GET all-patients",
       "endpoint": "/api/v1/patient",
       "method": "GET",
+      "input_query_strings": [ "*" ],
       "output_encoding": "json",
       "backend": [
         {
@@ -88,9 +90,23 @@
       ]
     },
     {
+      "@comment": "Temporary Endpoint for Testing",
+      "endpoint": "/test",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "host": [ "host.docker.internal:8080" ],
+          "url_pattern": "/v1/patient",
+          "encoding": "json"
+        }
+      ]
+    }
+    {
       "@comment": "Feature: REST - GET patient",
       "endpoint": "/api/v1/patient/{id}",
       "method": "GET",
+      "input_query_strings": [ "*" ],
       "output_encoding": "json",
       "backend": [
         {
@@ -113,6 +129,7 @@
       "@comment": "Feature: REST - POST patient",
       "endpoint": "/api/v1/patient",
       "method": "POST",
+      "input_query_strings": [ "*" ],
       "output_encoding": "json",
       "backend": [
         {
@@ -135,6 +152,7 @@
       "@comment": "Feature: REST - PUT patient",
       "endpoint": "/api/v1/patient",
       "method": "PUT",
+      "input_query_strings": [ "*" ],
       "output_encoding": "json",
       "backend": [
         {
@@ -157,6 +175,7 @@
       "@comment": "Feature: REST - DELETE patient",
       "endpoint": "/api/v1/patient/{id}",
       "method": "DELETE",
+      "input_query_strings": [ "*" ],
       "output_encoding": "json",
       "backend": [
         {
@@ -164,6 +183,29 @@
           "url_pattern": "/v1/patient{id}",
           "encoding": "json",
           "method": "DELETE",
+          "extra_config": {
+            "backend/grpc": {
+              "client_tls": {
+                "@comment": "Allow untrusted certificates in development stage",
+                "allow_insecure_connections": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Feature: REST - UPDATE deceased",
+      "endpoint": "/api/v1/deceased",
+      "method": "UPDATE",
+      "input_query_strings": [ "*" ],
+      "output_encoding": "json",
+      "backend": [
+        {
+          "host": [ "host.docker.internal:8080", "host.docker.internal:8081" ],
+          "url_pattern": "/v1/deceased",
+          "encoding": "json",
+          "method": "UPDATE",
           "extra_config": {
             "backend/grpc": {
               "client_tls": {
