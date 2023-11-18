@@ -78,7 +78,6 @@
         {
           "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/patient",
-          "is_collection": true,
           "encoding": "json",
           "method": "GET"
         }
@@ -103,6 +102,7 @@
       "@comment": "Temporary Endpoint for Testing",
       "endpoint": "/test",
       "method": "POST",
+      "input_query_strings": [ "*" ],
       "output_encoding": "json",
       "backend": [
         {
