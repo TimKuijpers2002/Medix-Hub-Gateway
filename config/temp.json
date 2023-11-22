@@ -79,9 +79,31 @@
           "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/patient",
           "encoding": "json",
-          "method": "GET"
+          "method": "GET",
+          "extra_config": {
+            "auth/client-credentials": {
+              "client_id": "medix-hub-secure",
+              "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
+              "client_secret": "w6oNQCMtU43Kud2kbI0YjVGolrk8EbHN",
+              "scopes": "profile,email"
+            }
+          }
         }
-      ]
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "issuer": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure",
+          "jwk_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/certs",
+          "disable_jwk_security": false,
+          "roles_key_is_nested": true,
+          "cache": true,
+          "roles_key": "realm_access.roles",
+          "roles": [
+            "Employee"
+          ]
+        }
+      }
     },
     {
       "@comment": "Feature: REST - GET patient",
