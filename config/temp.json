@@ -80,6 +80,9 @@
           "url_pattern": "/v1/patient",
           "encoding": "json",
           "method": "GET",
+          "headers_to_pass": [
+            "Authorization"
+          ],
           "extra_config": {
             "auth/client-credentials": {
               "client_id": "medix-hub-secure",
@@ -109,6 +112,9 @@
       "@comment": "Feature: REST - GET patient",
       "endpoint": "/api/v1/patient/{id}",
       "method": "GET",
+      "headers_to_pass": [
+        "Authorization"
+      ],
       "input_query_strings": [ "*" ],
       "output_encoding": "json",
       "backend": [
@@ -116,22 +122,31 @@
           "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/patient/{id}",
           "encoding": "json",
-          "method": "GET"
+          "method": "GET",
+          "extra_config": {
+            "auth/client-credentials": {
+              "client_id": "medix-hub-secure",
+              "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
+              "client_secret": "w6oNQCMtU43Kud2kbI0YjVGolrk8EbHN",
+              "scopes": "profile,email"
+            }
+          }
         }
-      ]
-    },
-    {
-      "@comment": "Temporary Endpoint for Testing",
-      "endpoint": "/test",
-      "method": "POST",
-      "input_query_strings": [ "*" ],
-      "output_encoding": "json",
-      "backend": [
-        {
-          "url_pattern": "patientapi/v1/patient",
-          "encoding": "json"
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "issuer": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure",
+          "jwk_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/certs",
+          "disable_jwk_security": false,
+          "roles_key_is_nested": true,
+          "cache": true,
+          "roles_key": "realm_access.roles",
+          "roles": [
+            "Employee"
+          ]
         }
-      ]
+      }
     },
     {
       "@comment": "Feature: REST - POST patient",
@@ -144,9 +159,34 @@
           "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/patient",
           "encoding": "json",
-          "method": "POST"
+          "method": "POST",
+          "headers_to_pass": [
+            "Authorization"
+          ],
+          "extra_config": {
+            "auth/client-credentials": {
+              "client_id": "medix-hub-secure",
+              "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
+              "client_secret": "w6oNQCMtU43Kud2kbI0YjVGolrk8EbHN",
+              "scopes": "profile,email"
+            }
+          }
         }
-      ]
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "issuer": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure",
+          "jwk_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/certs",
+          "disable_jwk_security": false,
+          "roles_key_is_nested": true,
+          "cache": true,
+          "roles_key": "realm_access.roles",
+          "roles": [
+            "Employee"
+          ]
+        }
+      }
     },
     {
       "@comment": "Feature: REST - PUT patient",
@@ -159,14 +199,42 @@
           "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/patient",
           "encoding": "json",
-          "method": "PUT"
+          "method": "PUT",
+          "headers_to_pass": [
+            "Authorization"
+          ],
+          "extra_config": {
+            "auth/client-credentials": {
+              "client_id": "medix-hub-secure",
+              "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
+              "client_secret": "w6oNQCMtU43Kud2kbI0YjVGolrk8EbHN",
+              "scopes": "profile,email"
+            }
+          }
         }
-      ]
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "issuer": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure",
+          "jwk_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/certs",
+          "disable_jwk_security": false,
+          "roles_key_is_nested": true,
+          "cache": true,
+          "roles_key": "realm_access.roles",
+          "roles": [
+            "Employee"
+          ]
+        }
+      }
     },
     {
       "@comment": "Feature: REST - DELETE patient",
       "endpoint": "/api/v1/patient/{id}",
       "method": "DELETE",
+      "headers_to_pass": [
+        "Authorization"
+      ],
       "input_query_strings": [ "*" ],
       "output_encoding": "json",
       "backend": [
@@ -174,9 +242,31 @@
           "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/patient/{id}",
           "encoding": "json",
-          "method": "DELETE"
+          "method": "DELETE",
+          "extra_config": {
+            "auth/client-credentials": {
+              "client_id": "medix-hub-secure",
+              "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
+              "client_secret": "w6oNQCMtU43Kud2kbI0YjVGolrk8EbHN",
+              "scopes": "profile,email"
+            }
+          }
         }
-      ]
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "issuer": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure",
+          "jwk_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/certs",
+          "disable_jwk_security": false,
+          "roles_key_is_nested": true,
+          "cache": true,
+          "roles_key": "realm_access.roles",
+          "roles": [
+            "Employee"
+          ]
+        }
+      }
     },
     {
       "@comment": "Feature: REST - UPDATE deceased",
@@ -189,9 +279,34 @@
           "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/deceased",
           "encoding": "json",
-          "method": "UPDATE"
+          "method": "UPDATE",
+          "headers_to_pass": [
+            "Authorization"
+          ],
+          "extra_config": {
+            "auth/client-credentials": {
+              "client_id": "medix-hub-secure",
+              "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
+              "client_secret": "w6oNQCMtU43Kud2kbI0YjVGolrk8EbHN",
+              "scopes": "profile,email"
+            }
+          }
         }
-      ]
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "issuer": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure",
+          "jwk_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/certs",
+          "disable_jwk_security": false,
+          "roles_key_is_nested": true,
+          "cache": true,
+          "roles_key": "realm_access.roles",
+          "roles": [
+            "Employee"
+          ]
+        }
+      }
     }
   ]
 }
