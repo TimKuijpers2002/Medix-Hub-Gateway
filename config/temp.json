@@ -87,7 +87,7 @@
             "auth/client-credentials": {
               "client_id": "medix-hub-secure",
               "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
-              "client_secret": "w6oNQCMtU43Kud2kbI0YjVGolrk8EbHN",
+              "client_secret": "RH1OVACETrAIN1Ox0APIdAImX8KCdtMH",
               "scopes": "profile,email"
             }
           }
@@ -127,7 +127,7 @@
             "auth/client-credentials": {
               "client_id": "medix-hub-secure",
               "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
-              "client_secret": "w6oNQCMtU43Kud2kbI0YjVGolrk8EbHN",
+              "client_secret": "RH1OVACETrAIN1Ox0APIdAImX8KCdtMH",
               "scopes": "profile,email"
             }
           }
@@ -167,7 +167,7 @@
             "auth/client-credentials": {
               "client_id": "medix-hub-secure",
               "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
-              "client_secret": "w6oNQCMtU43Kud2kbI0YjVGolrk8EbHN",
+              "client_secret": "RH1OVACETrAIN1Ox0APIdAImX8KCdtMH",
               "scopes": "profile,email"
             }
           }
@@ -207,7 +207,7 @@
             "auth/client-credentials": {
               "client_id": "medix-hub-secure",
               "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
-              "client_secret": "w6oNQCMtU43Kud2kbI0YjVGolrk8EbHN",
+              "client_secret": "RH1OVACETrAIN1Ox0APIdAImX8KCdtMH",
               "scopes": "profile,email"
             }
           }
@@ -247,7 +247,7 @@
             "auth/client-credentials": {
               "client_id": "medix-hub-secure",
               "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
-              "client_secret": "w6oNQCMtU43Kud2kbI0YjVGolrk8EbHN",
+              "client_secret": "RH1OVACETrAIN1Ox0APIdAImX8KCdtMH",
               "scopes": "profile,email"
             }
           }
@@ -287,7 +287,7 @@
             "auth/client-credentials": {
               "client_id": "medix-hub-secure",
               "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
-              "client_secret": "w6oNQCMtU43Kud2kbI0YjVGolrk8EbHN",
+              "client_secret": "RH1OVACETrAIN1Ox0APIdAImX8KCdtMH",
               "scopes": "profile,email"
             }
           }
