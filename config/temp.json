@@ -85,7 +85,7 @@
           ],
           "extra_config": {
             "auth/client-credentials": {
-              "client_id": "medix-hub-secure",
+              "client_id": "medix-hub-client",
               "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
               "client_secret": "RH1OVACETrAIN1Ox0APIdAImX8KCdtMH",
               "scopes": "profile,email"
