@@ -10,6 +10,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
+  - host: medix-hub
   - http:
       paths:
       - path: /gateway(/|$)(.*)
