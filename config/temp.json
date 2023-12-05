@@ -101,7 +101,7 @@
           "disable_jwk_security": false,
           "roles_key_is_nested": true,
           "cache": true,
-          "roles_key": "roles",
+          "roles_key": "realm_access.roles",
           "roles": [
             "Employee"
           ]
@@ -141,7 +141,7 @@
           "disable_jwk_security": false,
           "roles_key_is_nested": true,
           "cache": true,
-          "roles_key": "roles",
+          "roles_key": "realm_access.roles",
           "roles": [
             "Employee"
           ]
