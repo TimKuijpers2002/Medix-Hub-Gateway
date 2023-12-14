@@ -76,7 +76,6 @@
           "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/patient",
           "encoding": "json",
-          "return_error_details": "backend_a",
           "method": "GET",
           "input_headers": [
             "Authorization"
@@ -87,6 +86,9 @@
               "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
               "client_secret": "RH1OVACETrAIN1Ox0APIdAImX8KCdtMH",
               "scopes": "profile,email"
+            },
+            "backend/http": {
+              "return_error_code": true
             }
           }
         }
