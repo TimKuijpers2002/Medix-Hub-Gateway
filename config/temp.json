@@ -6,6 +6,9 @@
   "timeout": "3000ms",
   "cache_ttl": "300s",
   "port": 8000,
+  "tls": {
+
+  },
   "extra_config": {
     "security/cors": {
       "allow_origins": [
@@ -77,7 +80,7 @@
           "url_pattern": "/v1/patient",
           "encoding": "json",
           "method": "GET",
-          "input_headers": [
+          "headers_to_pass": [
             "Authorization"
           ],
           "extra_config": {
@@ -86,9 +89,6 @@
               "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
               "client_secret": "RH1OVACETrAIN1Ox0APIdAImX8KCdtMH",
               "scopes": "profile,email"
-            },
-            "backend/http": {
-              "return_error_code": true
             }
           }
         }
@@ -112,7 +112,7 @@
       "@comment": "Feature: REST - GET patient",
       "endpoint": "/api/v1/patient/{id}",
       "method": "GET",
-      "input_headers": [
+      "headers_to_pass": [
         "Authorization"
       ],
       "input_query_strings": [ "*" ],
@@ -160,7 +160,7 @@
           "url_pattern": "/v1/patient",
           "encoding": "json",
           "method": "POST",
-          "input_headers": [
+          "headers_to_pass": [
             "Authorization"
           ],
           "extra_config": {
@@ -200,7 +200,7 @@
           "url_pattern": "/v1/patient",
           "encoding": "json",
           "method": "PUT",
-          "input_headers": [
+          "headers_to_pass": [
             "Authorization"
           ],
           "extra_config": {
@@ -232,7 +232,7 @@
       "@comment": "Feature: REST - DELETE patient",
       "endpoint": "/api/v1/patient/{id}",
       "method": "DELETE",
-      "input_headers": [
+      "headers_to_pass": [
         "Authorization"
       ],
       "input_query_strings": [ "*" ],
@@ -279,8 +279,8 @@
           "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/deceased",
           "encoding": "json",
-          "method": "PUT",
-          "input_headers": [
+          "method": "UPDATE",
+          "headers_to_pass": [
             "Authorization"
           ],
           "extra_config": {
