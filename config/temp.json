@@ -279,7 +279,7 @@
           "host": [ "host.docker.internal:8080" ],
           "url_pattern": "/v1/deceased",
           "encoding": "json",
-          "method": "UPDATE",
+          "method": "PUT",
           "headers_to_pass": [
             "Authorization"
           ],
