@@ -54,7 +54,7 @@
       "input_query_strings": [ "*" ],
       "backend": [
         {
-          "host": [ "host.docker.internal:8081" ],
+          "host": [ "{HOST_PATIENT_GRPC}" ],
           "url_pattern": "/patient.PatientProto/GetAllPatient",
           "encoding": "no-op",
           "extra_config": {
@@ -76,7 +76,7 @@
       "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080" ],
+          "host": [ "{HOST_PATIENT_API}" ],
           "url_pattern": "/v1/patient",
           "encoding": "json",
           "method": "GET",
@@ -119,7 +119,7 @@
       "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080" ],
+          "host": [ "{HOST_PATIENT_API}" ],
           "url_pattern": "/v1/patient/{id}",
           "encoding": "json",
           "method": "GET",
@@ -156,7 +156,7 @@
       "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080" ],
+          "host": [ "{HOST_PATIENT_API}" ],
           "url_pattern": "/v1/patient",
           "encoding": "json",
           "method": "POST",
@@ -196,7 +196,7 @@
       "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080" ],
+          "host": [ "{HOST_PATIENT_API}" ],
           "url_pattern": "/v1/patient",
           "encoding": "json",
           "method": "PUT",
@@ -239,7 +239,7 @@
       "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080" ],
+          "host": [ "{HOST_PATIENT_API}" ],
           "url_pattern": "/v1/patient/{id}",
           "encoding": "json",
           "method": "DELETE",
@@ -276,7 +276,7 @@
       "output_encoding": "json",
       "backend": [
         {
-          "host": [ "host.docker.internal:8080" ],
+          "host": [ "{HOST_PATIENT_API}" ],
           "url_pattern": "/v1/deceased",
           "encoding": "json",
           "method": "PUT",
