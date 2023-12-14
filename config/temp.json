@@ -6,9 +6,6 @@
   "timeout": "3000ms",
   "cache_ttl": "300s",
   "port": 8000,
-  "tls": {
-
-  },
   "extra_config": {
     "security/cors": {
       "allow_origins": [
@@ -80,7 +77,7 @@
           "url_pattern": "/v1/patient",
           "encoding": "json",
           "method": "GET",
-          "headers_to_pass": [
+          "input_headers": [
             "Authorization"
           ],
           "extra_config": {
@@ -112,7 +109,7 @@
       "@comment": "Feature: REST - GET patient",
       "endpoint": "/api/v1/patient/{id}",
       "method": "GET",
-      "headers_to_pass": [
+      "input_headers": [
         "Authorization"
       ],
       "input_query_strings": [ "*" ],
@@ -160,7 +157,7 @@
           "url_pattern": "/v1/patient",
           "encoding": "json",
           "method": "POST",
-          "headers_to_pass": [
+          "input_headers": [
             "Authorization"
           ],
           "extra_config": {
@@ -200,7 +197,7 @@
           "url_pattern": "/v1/patient",
           "encoding": "json",
           "method": "PUT",
-          "headers_to_pass": [
+          "input_headers": [
             "Authorization"
           ],
           "extra_config": {
@@ -232,7 +229,7 @@
       "@comment": "Feature: REST - DELETE patient",
       "endpoint": "/api/v1/patient/{id}",
       "method": "DELETE",
-      "headers_to_pass": [
+      "input_headers": [
         "Authorization"
       ],
       "input_query_strings": [ "*" ],
@@ -280,7 +277,7 @@
           "url_pattern": "/v1/deceased",
           "encoding": "json",
           "method": "UPDATE",
-          "headers_to_pass": [
+          "input_headers": [
             "Authorization"
           ],
           "extra_config": {
