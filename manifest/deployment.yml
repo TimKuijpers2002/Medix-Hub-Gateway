@@ -14,7 +14,9 @@ spec:
     spec:
       containers:
         - name: api-gateway
-          image: timsku2002/gateway:latest
+          image: timsku2002/gateway:kubernetes
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
+          command: [ "/usr/bin/krakend" ]
+          args: [ "run", "-d", "-c", "/etc/krakend/krakend.json", "-p", "80" ]
