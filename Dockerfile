@@ -1,3 +1,3 @@
 FROM devopsfaith/krakend
 EXPOSE 8000
-COPY /config/temp.json /etc/krakend/krakend.json
+COPY /config/krakend.json /etc/krakend/krakend.json
