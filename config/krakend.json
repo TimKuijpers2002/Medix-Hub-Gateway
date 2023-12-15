@@ -307,6 +307,126 @@
           ]
         }
       }
+    },
+    {
+      "@comment": "Feature: REST - POST gpreport",
+      "endpoint": "/api/v1/gpreport",
+      "method": "POST",
+      "input_query_strings": [ "*" ],
+      "output_encoding": "json",
+      "backend": [
+        {
+          "host": [ "{HOST_REPORT_COMMAND_API}" ],
+          "url_pattern": "/v1/gpreport",
+          "encoding": "json",
+          "method": "POST",
+          "headers_to_pass": [
+            "Authorization"
+          ],
+          "extra_config": {
+            "auth/client-credentials": {
+              "client_id": "medix-hub-client",
+              "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
+              "client_secret": "RH1OVACETrAIN1Ox0APIdAImX8KCdtMH",
+              "scopes": "profile,email"
+            }
+          }
+        }
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "issuer": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure",
+          "jwk_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/certs",
+          "disable_jwk_security": false,
+          "roles_key_is_nested": true,
+          "cache": true,
+          "roles_key": "realm_access.roles",
+          "roles": [
+            "Employee"
+          ]
+        }
+      }
+    },
+    {
+      "@comment": "Feature: REST - PUT gpreport",
+      "endpoint": "/api/v1/gpreport/{id}",
+      "method": "PUT",
+      "input_query_strings": [ "*" ],
+      "output_encoding": "json",
+      "backend": [
+        {
+          "host": [ "{HOST_REPORT_COMMAND_API}" ],
+          "url_pattern": "/v1/gpreport/{id}",
+          "encoding": "json",
+          "method": "PUT",
+          "headers_to_pass": [
+            "Authorization"
+          ],
+          "extra_config": {
+            "auth/client-credentials": {
+              "client_id": "medix-hub-client",
+              "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
+              "client_secret": "RH1OVACETrAIN1Ox0APIdAImX8KCdtMH",
+              "scopes": "profile,email"
+            }
+          }
+        }
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "issuer": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure",
+          "jwk_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/certs",
+          "disable_jwk_security": false,
+          "roles_key_is_nested": true,
+          "cache": true,
+          "roles_key": "realm_access.roles",
+          "roles": [
+            "Employee"
+          ]
+        }
+      }
+    },
+    {
+      "@comment": "Feature: REST - DELETE gpreport",
+      "endpoint": "/api/v1/gpreport/{id}",
+      "method": "DELETE",
+      "headers_to_pass": [
+        "Authorization"
+      ],
+      "input_query_strings": [ "*" ],
+      "output_encoding": "json",
+      "backend": [
+        {
+          "host": [ "{HOST_REPORT_COMMAND_API}" ],
+          "url_pattern": "/v1/gpreport/{id}",
+          "encoding": "json",
+          "method": "DELETE",
+          "extra_config": {
+            "auth/client-credentials": {
+              "client_id": "medix-hub-client",
+              "token_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/token",
+              "client_secret": "RH1OVACETrAIN1Ox0APIdAImX8KCdtMH",
+              "scopes": "profile,email"
+            }
+          }
+        }
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "issuer": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure",
+          "jwk_url": "https://lemur-11.cloud-iam.com/auth/realms/medix-hub-secure/protocol/openid-connect/certs",
+          "disable_jwk_security": false,
+          "roles_key_is_nested": true,
+          "cache": true,
+          "roles_key": "realm_access.roles",
+          "roles": [
+            "Employee"
+          ]
+        }
+      }
     }
   ]
 }
