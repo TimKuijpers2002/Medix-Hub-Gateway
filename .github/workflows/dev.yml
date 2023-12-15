@@ -22,11 +22,13 @@ jobs:
         run: |
           echo "HOST_PATIENT_API=${{ secrets.DOCKER_HOST_PATIENT_API }}" >> $GITHUB_ENV
           echo "HOST_PATIENT_GRPC=${{ secrets.DOCKER_HOST_PATIENT_GRPC }}" >> $GITHUB_ENV
+          echo "HOST_REPORT_COMMAND_API=${{ secrets.DOCKER_HOST_REPORT_COMMAND_API }}" >> $GITHUB_ENV
 
       - name: Replace Placeholders in appsettings.json for Dev
         run: |
           sed -i "s|{HOST_PATIENT_API}|${HOST_PATIENT_API}|g" ./config/krakend.json
           sed -i "s|{HOST_PATIENT_GRPC}|${HOST_PATIENT_GRPC}|g" ./config/krakend.json
+          sed -i "s|{HOST_REPORT_COMMAND_API}|${HOST_REPORT_COMMAND_API}|g" ./config/krakend.json
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v4
@@ -52,11 +54,13 @@ jobs:
         run: |
           echo "HOST_PATIENT_API=${{ secrets.KUBERNETES_HOST_PATIENT_API }}" >> $GITHUB_ENV
           echo "HOST_PATIENT_GRPC=${{ secrets.KUBERNETES_HOST_PATIENT_GRPC }}" >> $GITHUB_ENV
+          echo "HOST_REPORT_COMMAND_API=${{ secrets.KUBERNETES_HOST_REPORT_COMMAND_API }}" >> $GITHUB_ENV
 
       - name: Replace Placeholders in appsettings.json for Dev
         run: |
           sed -i "s|{HOST_PATIENT_API}|${HOST_PATIENT_API}|g" ./config/krakend.json
           sed -i "s|{HOST_PATIENT_GRPC}|${HOST_PATIENT_GRPC}|g" ./config/krakend.json
+          sed -i "s|{HOST_REPORT_COMMAND_API}|${HOST_REPORT_COMMAND_API}|g" ./config/krakend.json
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v4
