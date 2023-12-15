@@ -5,7 +5,7 @@ on:
     branches: ["master"]
 
 jobs:
-  publish:
+  publish_prod_docker:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,9 +18,53 @@ jobs:
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Set Environment Variables for Prod
+        run: |
+          echo "HOST_PATIENT_API=${{ secrets.DOCKER_HOST_PATIENT_API }}" >> $GITHUB_ENV
+          echo "HOST_PATIENT_GRPC=${{ secrets.DOCKER_HOST_PATIENT_GRPC }}" >> $GITHUB_ENV
+          echo "HOST_REPORT_COMMAND_API=${{ secrets.DOCKER_HOST_REPORT_COMMAND_API }}" >> $GITHUB_ENV
+
+      - name: Replace Placeholders in appsettings.json for Prod
+        run: |
+          sed -i "s|{HOST_PATIENT_API}|${HOST_PATIENT_API}|g" ./config/krakend.json
+          sed -i "s|{HOST_PATIENT_GRPC}|${HOST_PATIENT_GRPC}|g" ./config/krakend.json
+          sed -i "s|{HOST_REPORT_COMMAND_API}|${HOST_REPORT_COMMAND_API}|g" ./config/krakend.json
+
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/gateway:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/gateway:dev
+
+  publish_prod_kubernetes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Set Environment Variables for Dev
+        run: |
+          echo "HOST_PATIENT_API=${{ secrets.KUBERNETES_HOST_PATIENT_API }}" >> $GITHUB_ENV
+          echo "HOST_PATIENT_GRPC=${{ secrets.KUBERNETES_HOST_PATIENT_GRPC }}" >> $GITHUB_ENV
+          echo "HOST_REPORT_COMMAND_API=${{ secrets.KUBERNETES_HOST_REPORT_COMMAND_API }}" >> $GITHUB_ENV
+
+      - name: Replace Placeholders in appsettings.json for Dev
+        run: |
+          sed -i "s|{HOST_PATIENT_API}|${HOST_PATIENT_API}|g" ./config/krakend.json
+          sed -i "s|{HOST_PATIENT_GRPC}|${HOST_PATIENT_GRPC}|g" ./config/krakend.json
+          sed -i "s|{HOST_REPORT_COMMAND_API}|${HOST_REPORT_COMMAND_API}|g" ./config/krakend.json
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/gateway:kubernetes
