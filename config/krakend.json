@@ -360,7 +360,7 @@
       "backend": [
         {
         "host": [ "{HOST_REPORT_QUERY_API}" ],
-          "url_pattern": "/v1/patient/{id}",
+          "url_pattern": "/v1/gpreport/{id}",
           "encoding": "json",
           "method": "GET",
           "extra_config": {
